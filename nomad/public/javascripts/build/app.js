@@ -3,16 +3,16 @@ var $ = jQuery = require('../../libraries/jquery/dist/jquery');
 var bootstrap  = require('../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap');
 var React      = require('react');
 // var HelloWorld = require('./HelloWorld.jsx');
-var Job        = require('./Job.jsx');
+var Jobs        = require('./Jobs.jsx');
 
 React.render(
-  React.createElement(Job, null),
-  document.getElementById('job-post')
+  React.createElement(Jobs, null),
+  document.getElementById('jobs')
 );
 
 
 
-},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":159,"../../libraries/jquery/dist/jquery":160,"./Job.jsx":158,"react":157}],2:[function(require,module,exports){
+},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":160,"../../libraries/jquery/dist/jquery":161,"./Jobs.jsx":159,"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -19754,35 +19754,79 @@ module.exports = require('./lib/React');
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-    getInitialState: function() {
-        return {
-            company: 'TrackMaven',
-            position: 'Software Maven',
-            local: 'Washington, DC, USA',
-            lookingFor: 'Angular.js, Django, ElasticSearch',
-            postedDate: '4 April 2015',
-            description: '',
-            category: 'Engineer'
-        };     
-    },
-
-    render: function() {
-        return (
-            React.createElement("div", null, 
-                React.createElement("h2", {class: "listing-company"}, 
-                    React.createElement("span", {class: "listing-company-name"},  this.state.company), 
-                    React.createElement("span", {class: "listing-location"},  this.state.local)
-                ), 
-                React.createElement("span", {class: "listing-job-type"}, "Looking for: ",  this.state.lookingFor), 
-                React.createElement("span", {class: "listing-posted"}, "Posted: ",  this.state.postedDate), 
-                React.createElement("span", {class: "listing-company-category"},  this.state.category)
-            )
-        );
-    }
+  render: function() {
+    return (
+      React.createElement("a", {href: "#", className: "list-group-item"}, 
+      React.createElement("h4", {class: "list-group-item-heading listing-company"}, 
+      React.createElement("span", {className: "listing-position-name"},  this.props.position), 
+      React.createElement("small", {className: "listing-company-name"},  this.props.company), 
+      React.createElement("small", {className: "listing-location"},  this.props.local)
+      ), 
+      React.createElement("p", {className: "list-group-item-text"}, 
+      React.createElement("span", {className: "listing-job-type"}, "Looking for: ",  this.props.lookingFor)
+      ), 
+      React.createElement("p", {className: "list-group-item-text"}, 
+      React.createElement("span", {className: "listing-posted"}, "Posted: ",  this.props.postedDate), 
+      React.createElement("span", {className: "listing-company-category"},  this.props.category)
+      )
+      )
+    );
+  }
 });
 
 
 },{"react":157}],159:[function(require,module,exports){
+var React = require('react');
+var Job = require('./Job.jsx');
+
+module.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+      data: [
+        {
+          company: 'TrackMaven',
+          position: 'Software Maven',
+          local: 'Washington, DC, USA',
+          lookingFor: 'Angular.js, Django, ElasticSearch',
+          postedDate: '4 April 2015',
+          description: '',
+          category: 'Engineering'
+        },
+        {
+          company: 'TrackMaven',
+          position: 'Junior Software Maven',
+          local: 'Washington, DC, USA',
+          lookingFor: 'Javascript, Python',
+          postedDate: '4 April 2015',
+          description: '',
+          category: 'Engineering'
+        }
+      ]
+    };
+  },
+  render: function(){
+    return (
+      React.createElement("div", {className: "list-group"}, 
+      this.state.data.map(function(job){
+        return (
+          React.createElement(Job, {
+          company: job.company, 
+          position: job.position, 
+          local: job.local, 
+          lookingFor: job.lookingFor, 
+          postedDate: job.postedDate, 
+          description: job.description, 
+          category: job.category}
+          )
+        )
+      })
+      )
+    )
+  }
+});
+
+
+},{"./Job.jsx":158,"react":157}],160:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -22102,7 +22146,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
