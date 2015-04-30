@@ -12,4 +12,8 @@ gulp.task('js', function() {
   .pipe(gulp.dest('public/javascripts/build/'));
 });
 
-gulp.task('default', ['js']);
+gulp.task('watch', function() {
+  gulp.watch("public/javascripts/src/**/*.jsx", ["js"])
+});
+
+gulp.task('default', ['js','watch']);
