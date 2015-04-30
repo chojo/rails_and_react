@@ -1,17 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var React      = require('react');
-var HelloWorld = require('./HelloWorld.jsx');
 var $ = jQuery = require('../../libraries/jquery/dist/jquery');
 var bootstrap  = require('../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap');
+var React      = require('react');
+// var HelloWorld = require('./HelloWorld.jsx');
+var Job        = require('./Job.jsx');
 
 React.render(
-  React.createElement(HelloWorld, null),
-  document.getElementById('example')
+  React.createElement(Job, null),
+  document.getElementById('job-post')
 );
 
 
 
-},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":159,"../../libraries/jquery/dist/jquery":160,"./HelloWorld.jsx":158,"react":157}],2:[function(require,module,exports){
+},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":159,"../../libraries/jquery/dist/jquery":160,"./Job.jsx":158,"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -19751,18 +19752,37 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":30}],158:[function(require,module,exports){
 var React = require('react');
-var HelloWorld = require('./HelloWorld.jsx');
 
 module.exports = React.createClass({displayName: "exports",
-  render: function() {
-    return (
-      React.createElement("h1", null, "Hello world from a React.js Component!")
-    )
-  }
-})
+    getInitialState: function() {
+        return {
+            company: 'TrackMaven',
+            position: 'Software Maven',
+            local: 'Washington, DC, USA',
+            lookingFor: 'Angular.js, Django, ElasticSearch',
+            postedDate: '4 April 2015',
+            description: '',
+            category: 'Engineer'
+        };     
+    },
+
+    render: function() {
+        return (
+            React.createElement("div", null, 
+                React.createElement("h2", {class: "listing-company"}, 
+                    React.createElement("span", {class: "listing-company-name"},  this.state.company), 
+                    React.createElement("span", {class: "listing-location"},  this.state.local)
+                ), 
+                React.createElement("span", {class: "listing-job-type"}, "Looking for: ",  this.state.lookingFor), 
+                React.createElement("span", {class: "listing-posted"}, "Posted: ",  this.state.postedDate), 
+                React.createElement("span", {class: "listing-company-category"},  this.state.category)
+            )
+        );
+    }
+});
 
 
-},{"./HelloWorld.jsx":158,"react":157}],159:[function(require,module,exports){
+},{"react":157}],159:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
