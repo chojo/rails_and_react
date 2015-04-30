@@ -1,4 +1,4 @@
-var React = require('react');
+var React      = require('react');
 var HelloWorld = require('./HelloWorld.jsx');
 
 module.exports = React.createClass({
